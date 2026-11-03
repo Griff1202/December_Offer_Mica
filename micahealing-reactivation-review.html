@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MICAHEALING · The December messages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141E28; --slate:#425F76; --mid:#6B879C; --soft:#A8BDCC;
+  --mist:#EDF2F5; --deep:#DCE5EB; --paper:#FFFFFF; --gold:#B0812C;
+  --up:#2F8F6B; --down:#B4453A;
+  --fill:#FBF3E2; --fill-br:#E8D6AE;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --body:'Instrument Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--mist);color:var(--ink);font-family:var(--body);font-size:16px;
+  line-height:1.6;-webkit-font-smoothing:antialiased;padding:0 0 90px}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px}
+
+header{padding:62px 0 32px}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,6vw,3rem);
+  line-height:1.02;letter-spacing:-.034em}
+.lede{color:var(--slate);font-size:1.04rem;margin-top:16px;max-width:60ch}
+
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.35rem,3.4vw,1.75rem);
+  letter-spacing:-.022em;margin:0 0 10px}
+h3{font-family:var(--display);font-weight:600;font-size:1.08rem;margin:0 0 8px}
+p{color:var(--slate);font-size:15.2px;margin-bottom:13px}
+p:last-child{margin-bottom:0}
+strong{color:var(--ink);font-weight:600}
+section{margin-top:54px}
+.rule{height:1px;background:var(--deep);margin:46px 0}
+
+/* ---- toggles ---- */
+.switch{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.switch button{font-family:var(--body);font-size:14px;font-weight:600;color:var(--slate);
+  background:var(--paper);border:1px solid var(--deep);border-radius:100px;
+  padding:9px 18px;cursor:pointer;transition:all .18s}
+.switch button:hover{border-color:var(--soft)}
+.switch button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.switchlab{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--mid);margin-bottom:4px}
+
+/* ---- message cards ---- */
+.msg{background:var(--paper);border:1px solid var(--deep);border-radius:4px;
+  margin-top:16px;overflow:hidden}
+.msg .top{padding:14px 22px;border-bottom:1px solid var(--deep);background:#F7FAFC}
+.when{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);font-weight:500}
+.meta{font-size:13.5px;color:var(--mid);margin-top:6px}
+.meta b{color:var(--ink);font-weight:600}
+.msg .bd{padding:24px 22px;font-size:15.3px;line-height:1.68;color:var(--ink)}
+.msg .bd p{color:var(--ink);margin-bottom:15px}
+.msg .bd p:last-child{margin-bottom:0}
+.sig{color:var(--slate);font-size:14.5px;line-height:1.5}
+.cta{display:inline-block;background:var(--ink);color:#fff;font-weight:600;font-size:14px;
+  padding:11px 22px;border-radius:4px;margin:4px 0 6px}
+.sms .bd{font-family:var(--mono);font-size:14px;line-height:1.62;background:#F7FAFC}
+.chars{font-family:var(--mono);font-size:10.5px;color:var(--soft);
+  padding:0 22px 14px;background:#F7FAFC}
+.note{padding:13px 22px;border-top:1px solid var(--deep);background:var(--mist);
+  font-size:13.3px;color:var(--slate)}
+
+/* ---- blanks ---- */
+.f{background:var(--fill);border-bottom:1.5px solid var(--fill-br);border-radius:2px;
+  padding:1px 5px;font-weight:600;color:#7A5A14;white-space:nowrap}
+.key{display:flex;align-items:center;gap:9px;font-size:13.4px;color:var(--mid);margin-top:14px}
+.key .f{font-size:12.5px}
+
+/* ---- subject options ---- */
+.opt{display:block;width:100%;text-align:left;background:var(--paper);border:1px solid var(--deep);
+  border-radius:4px;padding:14px 18px;margin-top:9px;cursor:pointer;font-family:var(--body);
+  transition:border-color .18s,background .18s}
+.opt:hover{border-color:var(--soft)}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:#F7FAFC;box-shadow:inset 3px 0 0 var(--gold)}
+.opt .st{font-size:15.2px;font-weight:600;color:var(--ink);display:block}
+.opt .sd{font-size:13.3px;color:var(--mid);display:block;margin-top:3px}
+
+/* ---- callout ---- */
+.cal{background:var(--paper);border:1px solid var(--deep);border-left:3px solid var(--gold);
+  border-radius:4px;padding:22px 24px;margin-top:20px}
+.cal .cl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);display:block;margin-bottom:9px}
+.cal.q{border-left-color:var(--slate)}
+.cal.q .cl{color:var(--slate)}
+
+/* ---- feedback ---- */
+.ask{margin-top:22px}
+.ask label{display:block;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:7px}
+.ask .hint{display:block;font-size:13.4px;color:var(--mid);font-weight:400;margin-top:2px}
+textarea{width:100%;min-height:92px;font-family:var(--body);font-size:15px;line-height:1.6;
+  color:var(--ink);background:var(--paper);border:1px solid var(--deep);border-radius:4px;
+  padding:13px 15px;resize:vertical}
+textarea:focus{outline:none;border-color:var(--slate);box-shadow:0 0 0 3px rgba(66,95,118,.1)}
+.pick{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.pick button{font-family:var(--body);font-size:13.5px;font-weight:600;color:var(--slate);
+  background:var(--paper);border:1px solid var(--deep);border-radius:100px;padding:8px 16px;cursor:pointer}
+.pick button[aria-pressed="true"]{background:var(--slate);border-color:var(--slate);color:#fff}
+#send{width:100%;background:var(--ink);color:#fff;border:none;border-radius:4px;
+  font-family:var(--body);font-size:15.5px;font-weight:600;padding:16px;margin-top:26px;cursor:pointer}
+#send:hover{background:#000}
+#send.done{background:var(--up)}
+.after{font-size:13.6px;color:var(--mid);margin-top:11px;text-align:center}
+
+footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--deep);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mid)}
+.hide{display:none !important}
+@media(max-width:640px){header{padding:40px 0 24px}.msg .bd,.msg .top{padding-left:17px;padding-right:17px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">MICAHEALING · December offer</div>
+  <h1>The December messages.</h1>
+  <p class="lede">The $25 January credit goes to every client. How we say it changes depending on whether we've seen them recently, so there are two sets of messages here. Nothing sends until you've approved the copy and we've checked the consent wording.</p>
+</header>
+
+<section id="offer">
+  <h2>The offer, as agreed</h2>
+  <div class="cal q">
+    <span class="cl">What everyone gets</span>
+    <p><strong>Book an in-office service in December, get $25 toward a service in January.</strong></p>
+    <p>The January service needs to be $75 or more. In-office services only, so no products or gift cards. The credit is applied at checkout by us, so there is nothing for anyone to keep hold of or mention at the desk.</p>
+  </div>
+  <div class="cal">
+    <span class="cl">One thing still to pin down</span>
+    <p><strong>Does the $75 minimum apply to the January service, the December one, or both?</strong> Written as it stands it reads as the January booking, which is the usual way round. Worth confirming before it goes out.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<section id="pickaud">
+  <h2>Two audiences</h2>
+  <p>Same offer, different opening. Someone who came in last month shouldn't be told we haven't seen them in a while.</p>
+  <div class="switchlab" style="margin-top:20px;">Show the messages for</div>
+  <div class="switch" id="asw">
+    <button data-a="lapsed" aria-pressed="true">Clients we haven't seen</button>
+    <button data-a="active" aria-pressed="false">Everyone else</button>
+  </div>
+</section>
+
+<section id="audactive" class="hide">
+  <h2>Clients who've been in recently</h2>
+  <p>Shorter, and only two messages. These people are already coming, so the job is just making sure they know about the credit. Over-messaging an active client is how you lose one.</p>
+  <div class="key"><span class="f">like this</span> we need this from you</div>
+
+  <div class="msg">
+    <div class="top">
+      <div class="when">Email · Tuesday 10 November</div>
+      <div class="meta">From <b>Jess · MICAHEALING</b><br>Subject <b>Something for December and January</b><br>Preview <b>Book in December, I'll put $25 toward January.</b></div>
+    </div>
+    <div class="bd">
+      <p>Hi Sarah,</p>
+      <p>Quick one from me. If you were already thinking about coming in before the end of the year, it's worth making it December this time.</p>
+      <p>Book any in-office service in December and I'll put <strong>$25 toward whatever you book in January</strong>. It applies to anything $75 or over, and I'll take care of it at checkout, so there's nothing to hold on to or mention at the desk.</p>
+      <p><span class="cta">Book a time</span></p>
+      <p>December does fill up faster than people expect, so earlier tends to be easier on both of us. And if January isn't on your radar yet, that's fine, the credit is good through the end of the month.</p>
+      <p class="sig">Jess<br>Mica Healing<br><span class="f">[phone]</span></p>
+    </div>
+    <div class="note">No "we miss you" anywhere in this one. For someone who was in three weeks ago that line reads as a form letter, and it undoes more than the credit is worth.</div>
+  </div>
+
+  <div class="msg sms">
+    <div class="top">
+      <div class="when">Text · Monday 16 November</div>
+      <div class="meta">Only to people who haven't booked December yet. One text, not three</div>
+    </div>
+    <div class="bd">Hi Sarah, Jess at Mica Healing. Book anything in December and I'll put $25 toward your January visit: micahealing.com/book<br><br>Reply STOP to opt out</div>
+    <div class="chars">About 140 characters</div>
+  </div>
+</section>
+
+<section id="audlapsed">
+  <h2>Clients we haven't seen in a while</h2>
+  <p>This group gets the credit too, but the message does a second job: finding out why they stopped coming. Two versions to choose between.</p>
+  <div class="switchlab" style="margin-top:18px;">Read the sequence as</div>
+  <div class="switch" id="vsw">
+    <button data-v="a" aria-pressed="true">The check-in</button>
+    <button data-v="b" aria-pressed="false">The calendar</button>
+  </div>
+</section>
+
+<!-- DIFFERENCE --><!-- DIFFERENCE -->
+<section id="diffsec">
+  <h2>The difference between them</h2>
+  <div class="cal q" id="diffa">
+    <span class="cl">The check-in</span>
+    <p><strong>Opens like a note from you, not a promotion.</strong> It says we've noticed they've been away, invites them to tell you if something went wrong last time, and only then mentions the offer.</p>
+    <p>The invitation to complain is deliberate. On a list of people who drifted away, a few honest replies about why are worth more than the bookings, and it makes the message read as a person rather than a campaign.</p>
+  </div>
+  <div class="cal q hide" id="diffb">
+    <span class="cl">The calendar</span>
+    <p><strong>Opens on December filling up.</strong> Shorter, more direct, and it gives a practical reason to act now rather than a personal one.</p>
+    <p>It suits the part of the list that doesn't respond to being checked in on but does respond to a deadline. One thing to confirm first, in the orange box below the email.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- THE MESSAGES -->
+<section id="msgsec">
+  <h2>The messages</h2>
+  <p>Shown as a client called Sarah would receive them. The shaded bits are the pieces we still need from you.</p>
+  <div class="key"><span class="f">like this</span> we need this from you</div>
+
+  <!-- ---------- VERSION A ---------- -->
+  <div id="va">
+    <div class="msg">
+      <div class="top">
+        <div class="when">Email · Tuesday 10 November</div>
+        <div class="meta">From <b>Jess · MICAHEALING</b><br>Subject <b id="subjA">It's been a while</b><br>Preview <b>No agenda, just checking in.</b></div>
+      </div>
+      <div class="bd">
+        <p>Hi Sarah,</p>
+        <p>Jess here, from Mica Healing. It struck me this week that we haven't seen you in a while, and I wanted to reach out before the end of the year got away from me.</p>
+        <p>No real agenda with this. If life just got busy, that's usually what it is. And if something about your last visit didn't sit right, I'd rather hear it than wonder about it, so feel free to tell me.</p>
+        <p>If you have been meaning to come back and just haven't gotten around to booking, here's a small nudge. Book anything in December and I'll put <strong>$25 toward a visit in January</strong>. It applies to any service $75 or over, and I'll take care of it at checkout, so there's nothing to hold on to or mention at the desk.</p>
+        <p><span class="cta">Book a time</span></p>
+        <p>December does fill up faster than people expect, so earlier tends to be easier on both of us.</p>
+        <p>Either way, hope you're doing well.</p>
+        <p class="sig">Jess<br>Mica Healing<br><span class="f">[phone]</span></p>
+      </div>
+    </div>
+
+    <div class="msg sms">
+      <div class="top">
+        <div class="when">Text 1 · Tuesday 10 November</div>
+        <div class="meta">Goes out the same morning as the email</div>
+      </div>
+      <div class="bd">Hi Sarah, it's Jess from Mica Healing. It's been a while since we've seen you. Book anything in December and I'll put $25 toward January: micahealing.com/book<br><br>Reply STOP to opt out</div>
+      <div class="chars">About 180 characters</div>
+    </div>
+
+    <div class="msg sms">
+      <div class="top">
+        <div class="when">Text 2 · Monday 16 November</div>
+        <div class="meta">Only to people who haven't booked or replied</div>
+      </div>
+      <div class="bd">Sarah, the $25 credit is on any December booking. If nothing on the calendar works, text me back and I'll find you something. Jess, Mica Healing</div>
+      <div class="chars">About 145 characters</div>
+      <div class="note">This one invites a reply. If someone texts back about their skin, their health or why they stopped coming, that's worth a phone call rather than a text thread. There's a suggested line for that further down.</div>
+    </div>
+
+    <div class="msg sms">
+      <div class="top">
+        <div class="when">Text 3 · Thursday 19 November</div>
+        <div class="meta">Last message. Nothing follows it</div>
+      </div>
+      <div class="bd">Last one from me, Sarah. The $25 January credit is on any December booking: micahealing.com/book<br><br>After that I'll leave you be. Jess</div>
+      <div class="chars">About 130 characters</div>
+      <div class="note">"After that I'll leave you be" is doing real work. It's a promise there's no fourth message, and it keeps people from opting out. Since a STOP reply also switches off their appointment reminders, every opt-out avoided here matters beyond this campaign.</div>
+    </div>
+  </div>
+
+  <!-- ---------- VERSION B ---------- -->
+  <div id="vb" class="hide">
+    <div class="cal">
+      <span class="cl">One thing to confirm first</span>
+      <p>This version opens with how full December is. <strong>That number needs to be real</strong>, because someone will book and find out. If you'd rather not put a figure on it, we'd use this instead: "December tends to fill before I expect it to, and I'd rather you had the first look."</p>
+    </div>
+
+    <div class="msg" style="margin-top:20px;">
+      <div class="top">
+        <div class="when">Email · Tuesday 10 November</div>
+        <div class="meta">From <b>Jess · MICAHEALING</b><br>Subject <b id="subjB">Before December fills up</b><br>Preview <b>Booking now is easier than booking later.</b></div>
+      </div>
+      <div class="bd">
+        <p>Hi Sarah,</p>
+        <p>Quick one from me. December is already about <span class="f">[X]</span> booked, which happens every year and still manages to catch me off guard.</p>
+        <p>You're on the short list of people I haven't seen in a while, so before it gets tight: book anything in December and I'll put <strong>$25 toward a visit in January</strong>. Any service $75 or over, handled at checkout, nothing to mention at the desk.</p>
+        <p><span class="cta">Book a time</span></p>
+        <p>That's everything. If now isn't the right time, no problem at all, and I'll stop filling your inbox.</p>
+        <p class="sig">Jess<br>Mica Healing<br><span class="f">[phone]</span></p>
+      </div>
+    </div>
+
+    <div class="msg sms">
+      <div class="top">
+        <div class="when">Text 1 · Tuesday 10 November</div>
+        <div class="meta">Goes out the same morning as the email</div>
+      </div>
+      <div class="bd">Hi Sarah, Jess at Mica Healing. December's filling and I haven't seen you in a while. Book this month and I'll put $25 toward January: micahealing.com/book<br><br>Reply STOP to opt out</div>
+      <div class="chars">About 175 characters</div>
+    </div>
+
+    <div class="msg sms">
+      <div class="top">
+        <div class="when">Text 2 · Monday 16 November</div>
+        <div class="meta">Only to people who haven't booked or replied</div>
+      </div>
+      <div class="bd">Sarah, a few December spots left and the $25 January credit is still on. Text me back if you want me to grab one for you. Jess</div>
+      <div class="chars">About 125 characters</div>
+      <div class="note">Same as the other version: this invites a reply, so anything clinical moves to a phone call.</div>
+    </div>
+
+    <div class="msg sms">
+      <div class="top">
+        <div class="when">Text 3 · Thursday 19 November</div>
+        <div class="meta">Last message. Nothing follows it</div>
+      </div>
+      <div class="bd">Closing this out, Sarah. Last call on the $25 January credit: micahealing.com/book<br><br>Jess, Mica Healing</div>
+      <div class="chars">About 100 characters</div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- SUBJECT LINES -->
+<section id="subsec">
+  <h2>Subject lines</h2>
+  <p>Pick whichever you'd rather use. The one you select shows in the email above.</p>
+  <div id="subsA">
+    <button class="opt" aria-pressed="true" data-s="It's been a while"><span class="st">It's been a while</span><span class="sd">The plainest of the three. Says exactly what the email is about.</span></button>
+    <button class="opt" aria-pressed="false" data-s="Thinking of you this week"><span class="st">Thinking of you this week</span><span class="sd">Warmer. Reads more like a message from a person who knows them.</span></button>
+    <button class="opt" aria-pressed="false" data-s="A small thing, from me"><span class="st">A small thing, from me</span><span class="sd">Hints at the offer without leading with it. Highest curiosity, slightly vaguer.</span></button>
+  </div>
+  <div id="subsB" class="hide">
+    <button class="opt" aria-pressed="true" data-s="Before December fills up"><span class="st">Before December fills up</span><span class="sd">Straightforward. The reason to open and the reason to act are the same.</span></button>
+    <button class="opt" aria-pressed="false" data-s="December is going quickly"><span class="st">December is going quickly</span><span class="sd">Softer than "fills up". Less pressure, slightly less urgency.</span></button>
+    <button class="opt" aria-pressed="false" data-s="Holding a spot for you"><span class="st">Holding a spot for you</span><span class="sd">Most personal of the three. Only use it if you'd genuinely hold one.</span></button>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- BEFORE IT SENDS -->
+<section>
+  <h2>One thing for you before it sends</h2>
+  <p>We need to know what your current forms already say about texting. Have a look at your intake and consent templates in PracticeQ for any wording about text messages. You'll find one of three things:</p>
+  <div class="cal q">
+    <span class="cl">What you're looking for</span>
+    <p><strong>Reminders only,</strong> something like "appointment reminders via text." Most common, and it doesn't stretch to cover a message like these.</p>
+    <p><strong>Wording that mentions offers or promotions.</strong> Anyone who signed that is covered.</p>
+    <p><strong>Nothing at all.</strong> Worth fixing regardless, separately from this.</p>
+  </div>
+  <p style="margin-top:18px;">Whatever you find, we'd also add a separate tick box to new client intake going forward. You can answer below, or just tell us you're not sure and we'll look together.</p>
+  <div class="cal">
+    <span class="cl">Heads up on opt-outs</span>
+    <p>PracticeQ treats STOP as all-or-nothing. If someone replies STOP to one of these, it also switches off their appointment reminders. That's why the last text promises there's no fourth one, and why we'd tell people about it upfront on the new tick box.</p>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- FEEDBACK -->
+<section>
+  <h2>Tell us what to change</h2>
+  <p>Type anywhere below, then hit the button at the bottom to copy it all out and send it back. Nothing is submitted automatically.</p>
+
+  <div class="ask">
+    <label>Which version?<span class="hint">You can change your mind later, this is just a starting point.</span></label>
+    <div class="pick" id="pv">
+      <button data-p="The check-in" aria-pressed="false">The check-in</button>
+      <button data-p="The calendar" aria-pressed="false">The calendar</button>
+      <button data-p="Not sure yet" aria-pressed="false">Not sure yet</button>
+    </div>
+  </div>
+
+  <div class="ask">
+    <label>Does this sound like you?<span class="hint">If any line doesn't, tell us which and we'll rewrite it. This matters more than anything else on the page.</span></label>
+    <textarea data-q="Sounds like Jess" placeholder="Anything that reads wrong, or isn't how you'd say it..."></textarea>
+  </div>
+
+  <div class="ask">
+    <label>Who counts as "haven't seen in a while"?<span class="hint">How many months without a visit puts someone in the first group rather than the second?</span></label>
+    <textarea data-q="Lapsed definition" placeholder="e.g. no visit in the last six months..."></textarea>
+  </div>
+
+  <div class="ask">
+    <label>The $75 minimum<span class="hint">Does it apply to the January service, the December one, or both? And does the credit die if someone cancels their December appointment?</span></label>
+    <textarea data-q="The $75 minimum" placeholder="How the minimum works, and what happens on a cancellation..."></textarea>
+  </div>
+
+  <div class="ask">
+    <label>Tracking the offer<span class="hint">We may attach a code to this so we can see exactly how many bookings it produced. It can work invisibly, applied at checkout by your team, or the client can enter it when they book. Any preference, and does PracticeQ make one easier than the other?</span></label>
+    <textarea data-q="Tracking the offer" placeholder="How you'd rather it worked, and anything your system can or can't do..."></textarea>
+  </div>
+
+  <div class="ask">
+    <label>Anything else<span class="hint">Anything missing, anything you'd rather we didn't say, anyone who shouldn't get this.</span></label>
+    <textarea data-q="Anything else" placeholder=""></textarea>
+  </div>
+
+  <button id="send">Copy my notes</button>
+  <p class="after">Then paste them into a text or an email to Brady. What you type is saved in this browser, so you can come back to it.</p>
+</section>
+
+<footer>The Quill Company · Griff@thequillcompany.com · (248) 494-6836</footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY = 'mh-reactivation-notes';
+
+  /* ---------- audience switch ---------- */
+  var aud = 'lapsed';
+  function setAud(a){
+    aud = a;
+    document.querySelectorAll('#asw button').forEach(function(b){
+      b.setAttribute('aria-pressed', b.dataset.a === a ? 'true' : 'false');
+    });
+    var isL = a === 'lapsed';
+    ['audlapsed','diffsec','msgsec','subsec'].forEach(function(id){
+      var el = document.getElementById(id); if(el) el.classList.toggle('hide', !isL);
+    });
+    document.getElementById('audactive').classList.toggle('hide', isL);
+    if(isL){ setVer(ver); }
+    else { ['diffa','diffb'].forEach(function(id){ document.getElementById(id).classList.add('hide'); }); }
+    save();
+  }
+  document.querySelectorAll('#asw button').forEach(function(b){
+    b.addEventListener('click', function(){ setAud(b.dataset.a); });
+  });
+
+  /* ---------- version switch ---------- */
+  var ver = 'a';
+  function setVer(v){
+    ver = v;
+    document.querySelectorAll('#vsw button').forEach(function(b){
+      b.setAttribute('aria-pressed', b.dataset.v === v ? 'true' : 'false');
+    });
+    document.getElementById('va').classList.toggle('hide', v !== 'a');
+    document.getElementById('vb').classList.toggle('hide', v !== 'b');
+    document.getElementById('diffa').classList.toggle('hide', v !== 'a');
+    document.getElementById('diffb').classList.toggle('hide', v !== 'b');
+    document.getElementById('subsA').classList.toggle('hide', v !== 'a');
+    document.getElementById('subsB').classList.toggle('hide', v !== 'b');
+  }
+  document.querySelectorAll('#vsw button').forEach(function(b){
+    b.addEventListener('click', function(){ setVer(b.dataset.v); });
+  });
+
+  /* ---------- subject pickers ---------- */
+  function wireSubs(wrapId, targetId){
+    var wrap = document.getElementById(wrapId);
+    wrap.querySelectorAll('.opt').forEach(function(o){
+      o.addEventListener('click', function(){
+        wrap.querySelectorAll('.opt').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+        o.setAttribute('aria-pressed','true');
+        document.getElementById(targetId).textContent = o.dataset.s;
+        save();
+      });
+    });
+  }
+  wireSubs('subsA','subjA');
+  wireSubs('subsB','subjB');
+
+  /* ---------- version pick chips ---------- */
+  document.querySelectorAll('#pv button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('#pv button').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+      b.setAttribute('aria-pressed','true');
+      save();
+    });
+  });
+
+  /* ---------- persistence (best effort) ---------- */
+  var areas = [].slice.call(document.querySelectorAll('textarea'));
+  function chosenSub(wrapId){
+    var el = document.querySelector('#'+wrapId+' .opt[aria-pressed="true"]');
+    return el ? el.dataset.s : '';
+  }
+  function chosenPick(){
+    var el = document.querySelector('#pv button[aria-pressed="true"]');
+    return el ? el.dataset.p : '';
+  }
+  function save(){
+    try{
+      var o = {v:ver, aud:aud, pick:chosenPick(), sa:chosenSub('subsA'), sb:chosenSub('subsB'), t:{}};
+      areas.forEach(function(a){ o.t[a.dataset.q] = a.value; });
+      localStorage.setItem(KEY, JSON.stringify(o));
+    }catch(e){}
+  }
+  function restore(){
+    try{
+      var raw = localStorage.getItem(KEY); if(!raw) return;
+      var o = JSON.parse(raw);
+      if(o.v) setVer(o.v);
+      if(o.aud) setAud(o.aud);
+      areas.forEach(function(a){ if(o.t && o.t[a.dataset.q]) a.value = o.t[a.dataset.q]; });
+      if(o.pick){ document.querySelectorAll('#pv button').forEach(function(b){
+        b.setAttribute('aria-pressed', b.dataset.p === o.pick ? 'true':'false'); }); }
+      [['subsA','subjA',o.sa],['subsB','subjB',o.sb]].forEach(function(c){
+        if(!c[2]) return;
+        var wrap = document.getElementById(c[0]);
+        wrap.querySelectorAll('.opt').forEach(function(x){
+          var on = x.dataset.s === c[2];
+          x.setAttribute('aria-pressed', on ? 'true':'false');
+          if(on) document.getElementById(c[1]).textContent = c[2];
+        });
+      });
+    }catch(e){}
+  }
+  areas.forEach(function(a){ a.addEventListener('input', save); });
+  restore();
+
+  /* ---------- copy out ---------- */
+  function build(){
+    var L = [];
+    L.push('MICA HEALING — notes on the reactivation messages');
+    L.push('');
+    var pick = chosenPick();
+    if(pick) L.push('Version for lapsed clients: ' + pick);
+    L.push('Subject line, the check-in: ' + chosenSub('subsA'));
+    L.push('Subject line, the calendar: ' + chosenSub('subsB'));
+    L.push('');
+    areas.forEach(function(a){
+      var v = a.value.trim();
+      if(v){ L.push(a.dataset.q.toUpperCase()); L.push(v); L.push(''); }
+    });
+    return L.join('\n').trim();
+  }
+  var btn = document.getElementById('send');
+  btn.addEventListener('click', function(){
+    var txt = build();
+    function done(){
+      btn.textContent = 'Copied. Paste it to Brady.';
+      btn.classList.add('done');
+      setTimeout(function(){ btn.textContent = 'Copy my notes'; btn.classList.remove('done'); }, 3200);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done, function(){ fallback(txt, done); });
+    } else { fallback(txt, done); }
+  });
+  function fallback(txt, cb){
+    var ta = document.createElement('textarea');
+    ta.value = txt; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); cb(); }catch(e){ window.prompt('Copy this and send it to Brady:', txt); }
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+</body>
+</html>
